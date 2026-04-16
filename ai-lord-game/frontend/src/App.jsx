@@ -12,7 +12,7 @@ import Battle from './components/Battle';
 import Navigation from './components/Navigation';
 
 // API基础URL
-const API_BASE_URL = 'http://localhost:5000/api';
+import { API_BASE_URL } from './api';
 
 function App() {
   const [gameState, setGameState] = useState(null);
