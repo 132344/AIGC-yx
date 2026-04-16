@@ -12,7 +12,7 @@ import Battle from './components/Battle';
 import Navigation from './components/Navigation';
 
 // API基础URL
-import { API_BASE_URL } from './api';
+const API_BASE_URL = '/api';
 
 function App() {
   const [gameState, setGameState] = useState(null);
@@ -46,41 +46,54 @@ function App() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gray-100">
-        <div className="text-2xl font-bold text-primary">加载中...</div>
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-2xl font-bold gold-text pulse">⚔️ 加载中...</div>
       </div>
     );
   }
 
   return (
     <Router>
-      <div className="min-h-screen bg-gradient-to-b from-gray-100 to-gray-200">
+      <div className="min-h-screen">
         {/* 顶部状态栏 */}
-        <header className="bg-primary text-white shadow-md">
-          <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-            <h1 className="text-2xl font-bold fantasy-font">领主传奇</h1>
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center">
-                <span className="mr-2">第 {gameState.day} 天</span>
+        <header className="bg-stone wood-border border-b-4 border-medieval-gold">
+          <div className="container mx-auto px-4 py-4">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+              <h1 className="text-3xl md:text-4xl font-bold gold-text tracking-wider">
+                ⚜️ 领主传奇 ⚜️
+              </h1>
+              <div className="flex items-center space-x-4 md:space-x-6">
+                <div className="flex items-center space-x-2">
+                  <span className="text-medieval-parchment">📅</span>
+                  <span className="gold-text font-bold text-lg">第 {gameState.day} 天</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <span className="text-medieval-parchment">💰</span>
+                  <span className="text-yellow-400 font-bold">{gameState.gold}</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <span className="text-medieval-parchment">🍞</span>
+                  <span className="text-green-400 font-bold">{gameState.food}</span>
+                </div>
+                <button
+                  onClick={advanceDay}
+                  className="medieval-btn px-6 py-2 rounded-lg text-medieval-parchment font-bold"
+                >
+                  ⏰ 推进一天
+                </button>
               </div>
-              <button 
-                onClick={advanceDay}
-                className="bg-accent hover:bg-amber-600 text-white px-4 py-1 rounded-md transition-colors"
-              >
-                推进一天
-              </button>
             </div>
           </div>
         </header>
 
         {/* 主要内容 */}
-        <main className="container mx-auto px-4 py-6">
+        <main className="container mx-auto px-4 py-8">
           <div className="flex flex-col lg:flex-row gap-6">
             {/* 左侧导航 */}
             <Navigation />
-            
+
             {/* 右侧内容 */}
-            <div className="flex-1 bg-white rounded-lg shadow-md p-6">
+            <div className="flex-1">
               <Routes>
                 <Route path="/" element={<Navigate to="/game-state" />} />
                 <Route path="/game-state" element={<GameState gameState={gameState} />} />
@@ -95,9 +108,9 @@ function App() {
         </main>
 
         {/* 底部信息 */}
-        <footer className="bg-dark text-white py-4 mt-8">
+        <footer className="bg-stone wood-border border-t-4 border-medieval-gold mt-12 py-6">
           <div className="container mx-auto px-4 text-center">
-            <p>领主传奇 - AI驱动的领主游戏</p>
+            <p className="gold-text text-lg">⚜️ 领主传奇 - AI驱动的领主游戏 ⚜️</p>
           </div>
         </footer>
       </div>

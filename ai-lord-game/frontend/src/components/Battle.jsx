@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { API_BASE_URL } from '../api';
+
+const API_BASE_URL = '/api';
 
 const Battle = () => {
   const [enemyName, setEnemyName] = useState('哥布林');
@@ -24,25 +25,31 @@ const Battle = () => {
   };
 
   return (
-    <div className="space-y-6">
-      <h2 className="text-2xl font-bold text-primary fantasy-font">战斗系统</h2>
-      
-      <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
-        <div className="space-y-4">
+    <div className="space-y-6 fade-in">
+      <h2 className="text-3xl font-bold gold-text text-center decorative-border pb-6">
+        ⚔️ 战斗系统 ⚔️
+      </h2>
+
+      <div className="parchment-card rounded-xl p-8 fade-in">
+        <h3 className="text-2xl font-bold text-medieval-brown mb-6 text-center">
+          🛡️ 准备战斗 🛡️
+        </h3>
+        <div className="space-y-6 max-w-2xl mx-auto">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              敌人名称
+            <label className="block text-lg font-medium text-medieval-dark mb-2">
+              👹 敌人名称
             </label>
             <input
               type="text"
               value={enemyName}
               onChange={(e) => setEnemyName(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md"
+              className="w-full px-4 py-3 border-2 border-medieval-brown rounded-lg bg-medieval-parchment/50 text-medieval-dark focus:outline-none focus:border-medieval-gold transition-colors"
+              placeholder="输入敌人名称"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              敌人强度 (1-10)
+            <label className="block text-lg font-medium text-medieval-dark mb-2">
+              💪 敌人强度 (1-10)
             </label>
             <input
               type="number"
@@ -50,24 +57,34 @@ const Battle = () => {
               max="10"
               value={enemyStrength}
               onChange={(e) => setEnemyStrength(parseInt(e.target.value))}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md"
+              className="w-full px-4 py-3 border-2 border-medieval-brown rounded-lg bg-medieval-parchment/50 text-medieval-dark focus:outline-none focus:border-medieval-gold transition-colors"
             />
           </div>
           <button
             onClick={handleBattle}
             disabled={loading}
-            className="w-full bg-red-600 hover:bg-red-700 text-white py-2 rounded-md transition-colors"
+            className="w-full medieval-btn py-4 rounded-lg text-medieval-parchment font-bold text-xl"
           >
-            {loading ? '战斗中...' : '开始战斗'}
+            {loading ? (
+              <span className="pulse">⚔️ 战斗中...</span>
+            ) : (
+              <span>⚔️ 开始战斗 ⚔️</span>
+            )}
           </button>
         </div>
       </div>
 
       {battleResult && (
-        <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
-          <h3 className="text-lg font-semibold text-primary mb-3">战斗结果</h3>
-          <div className="prose">
-            <p>{battleResult}</p>
+        <div className="parchment-card rounded-xl p-8 fade-in" style={{ animationDelay: '0.2s' }}>
+          <h3 className="text-2xl font-bold text-medieval-brown mb-6 text-center">
+            📜 战斗结果 📜
+          </h3>
+          <div className="prose max-w-none">
+            <div className="bg-medieval-parchment/50 rounded-lg p-6 border-2 border-medieval-brown">
+              <p className="text-lg leading-relaxed text-medieval-dark whitespace-pre-line">
+                {battleResult}
+              </p>
+            </div>
           </div>
         </div>
       )}
