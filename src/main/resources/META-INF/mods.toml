@@ -1,0 +1,20 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="MIT"
+issueTrackerURL="https://github.com/example/examplemod/issues"
+showAsResourcePack=false
+
+[[mods]]
+modId="examplemod"
+version="1.0.0"
+displayName="Example Mod"
+authors="Example Author"
+description='''
+An example mod for Minecraft 1.20.1
+'''
+[[dependencies.examplemod]]
+modId="forge"
+mandatory=true
+versionRange="[47.0.0,)"
+ordering="NONE"
+side="BOTH"
